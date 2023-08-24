@@ -1,6 +1,12 @@
 pipeline {
     agent any
     stages {
+        stage('Checkout') {
+            steps {
+                // Check out your repository from GitHub
+                git branch: 'main', credentialsId: 'your-github-token', url: 'https://github.com/yourusername/your-repo.git'
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building the application...'
