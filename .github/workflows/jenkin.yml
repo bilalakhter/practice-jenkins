@@ -1,0 +1,19 @@
+name: Trigger Jenkins on Main Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger-jenkins:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Jenkins Build
+        env:
+          JENKINS_USERNAME: ${{ secrets.JENKINS_USERNAME }}
+          JENKINS_API_TOKEN: ${{ secrets.JENKINS_API_TOKEN }}
+        run: |
+          # Use curl or any other tool to trigger your Jenkins pipeline
+          curl -X POST http://54.204.178.193:8080/job/practice-jenkins/build --user $JENKINS_USERNAME:$JENKINS_API_TOKEN
